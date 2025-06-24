@@ -1,7 +1,19 @@
 import pandas as pd
 from datetime import datetime
-import re
+from textblob import TextBlob
 
+# Sentiment analysis helper
+def analyze_sentiment(text):
+    if not text:
+        return "neutral"
+    polarity = TextBlob(text).sentiment.polarity
+    if polarity > 0.2:
+        return "positive"
+    elif polarity < -0.2:
+        return "negative"
+    else:
+        return "neutral"
+    
 def cleaned_data(raw_data):
     # Step 1: Convert to DataFrame
     df = pd.DataFrame(raw_data)
