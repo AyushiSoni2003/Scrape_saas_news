@@ -112,13 +112,16 @@ Key Python packages used:
 ## Screenshots
 
 ### ✅ Scraping & Processing Output
-![Scraping Success](screenshots/scraping-success.png)
+![scraping-success](https://github.com/user-attachments/assets/18327072-21af-4f23-a851-b96d59a78c16)
+
 
 ### 📊 FastAPI Swagger UI
-![Swagger UI](screenshots/swagger-ui.png)
+![scraping-success](https://github.com/user-attachments/assets/9e008eb3-4c1c-4d01-9a72-a9d98ce4054c)
+
 
 ### 📦 Sample API Response
-![API Response](screenshots/api-response.png)
+![api-response](https://github.com/user-attachments/assets/c812fad8-aeee-40c3-9b89-a5bcda0dd934)
+
 
 
 ## License
