@@ -1,9 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from models import Article, ArticleStatistics, SessionLocal, init_db
+from models import Article, ArticleStatistics, SessionLocal, init_db , DatabaseManager
 from pydantic import BaseModel
 from datetime import datetime
+from scraper import Scraper
+from processor import DataProcessor
 
 app = FastAPI(title="SaaS News API")
 
@@ -83,3 +85,21 @@ def create_article(article: ArticleCreateSchema, db: Session = Depends(get_db)):
 def get_statistics(db: Session = Depends(get_db)):
     stats = db.query(ArticleStatistics).all()
     return stats
+
+@app.post("/scrape")
+async def scrape_and_store(db: Session = Depends(get_db)):
+    scraper = Scraper()
+    raw_data = await scraper.scrape_all()
+
+    if not raw_data:
+        raise HTTPException(status_code=500, detail="No data scraped")
+
+    processor = DataProcessor()
+    df = processor.clean_data(raw_data)
+    articles = df.to_dict(orient="records")
+
+    manager = DatabaseManager(db)
+    manager.save_articles(articles)
+    manager.update_statistics()
+
+    return {"message": "Scraping complete", "article_count": len(articles)}
