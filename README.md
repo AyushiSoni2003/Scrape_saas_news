@@ -116,7 +116,8 @@ Key Python packages used:
 
 
 ### 📊 FastAPI Swagger UI
-![scraping-success](https://github.com/user-attachments/assets/9e008eb3-4c1c-4d01-9a72-a9d98ce4054c)
+![swagger-ui](https://github.com/user-attachments/assets/18215754-225a-422d-a5ae-95784c142597)
+
 
 
 ### 📦 Sample API Response
